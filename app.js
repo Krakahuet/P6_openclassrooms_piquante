@@ -5,6 +5,8 @@ const app = express();
 /* import de mongoose */
 const mongoose = require('mongoose');
 
+const bodyParser = require('body-parser');
+
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/users');
 
@@ -15,7 +17,7 @@ mongoose.connect('mongodb+srv://spolit:MFQZxVYYkDaFTRES@cluster0.tivsjeo.mongodb
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use(express.json());
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,8 +26,11 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/Sauces', saucesRoutes);
+app.use('/api/sauces', saucesRoutes);
 app.use('/api/users', userRoutes);
+
+app.use(express.json());
+app.use(bodyParser.json());
 
 
 /* export du fichier app.js afin de pouvoir l'utiliser dans d'autres */
