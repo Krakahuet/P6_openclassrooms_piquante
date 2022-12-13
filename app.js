@@ -1,6 +1,6 @@
 /* import d'express  */
 const express = require('express');
-const app = express();
+
 
 /* import de mongoose */
 const mongoose = require('mongoose');
@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/users');
 
+const app = express();
 /* connexion de mongoose à la base de données mongoDB */
 mongoose.connect('mongodb+srv://spolit:MFQZxVYYkDaFTRES@cluster0.tivsjeo.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -17,7 +18,7 @@ mongoose.connect('mongodb+srv://spolit:MFQZxVYYkDaFTRES@cluster0.tivsjeo.mongodb
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 
-app.use(express.json());
+
 app.use(bodyParser.json());
 
 
