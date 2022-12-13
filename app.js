@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   });
 
 app.use('/api/sauces', saucesRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/auth', userRoutes);
 
 app.use(express.json());
 app.use(bodyParser.json());
