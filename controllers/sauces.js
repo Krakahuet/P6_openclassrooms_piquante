@@ -1,5 +1,7 @@
-const sauce = require('../models/sauces');
+/* import du schéma de données des sauces (dossier models fichier Sauces) */
+const sauce = require('../models/Sauces');
 
+/* Création et enregistrement (save) d'une sauce dans la base de données */
 exports.createSauce = (req, res, next) => {
   const sauce = new sauce({
     userId: req.body.userId,
@@ -16,7 +18,7 @@ exports.createSauce = (req, res, next) => {
   sauce.save().then(
     () => {
       res.status(201).json({
-        message: 'Post saved successfully!'
+        message: 'Sauce enregistrée avec succès !'
       });
     }
   ).catch(
@@ -28,6 +30,7 @@ exports.createSauce = (req, res, next) => {
   );
 };
 
+/* Recherche d'une sauce dans la base de données */
 exports.getOneSauce = (req, res, next) => {
   sauce.findOne({
     _id: req.params.id
@@ -44,6 +47,7 @@ exports.getOneSauce = (req, res, next) => {
   );
 };
 
+/* Modification et enregistrement (updateOne) d'une sauce dans la base de données */
 exports.modifySauce = (req, res, next) => {
   const sauce = new sauce ({
     _id: req.params.id,
@@ -61,7 +65,7 @@ exports.modifySauce = (req, res, next) => {
   sauce.updateOne({_id: req.params.id}, sauce).then(
     () => {
       res.status(201).json({
-        message: 'Thing updated successfully!'
+        message: 'Sauce modifiée avec succès !'
       });
     }
   ).catch(
@@ -73,11 +77,12 @@ exports.modifySauce = (req, res, next) => {
   );
 };
 
+/* Suppression d'une sauce dans la base de données */
 exports.deleteSauce = (req, res, next) => {
   sauce.deleteOne({_id: req.params.id}).then(
     () => {
       res.status(200).json({
-        message: 'Deleted!'
+        message: 'Sauce supprimée !'
       });
     }
   ).catch(
@@ -89,10 +94,11 @@ exports.deleteSauce = (req, res, next) => {
   );
 };
 
+/* Affichage de l'ensemble des sauces présentes dans la base de données */
 exports.getAllSauces = (req, res, next) => {
   sauce.find().then(
-    (things) => {
-      res.status(200).json(things);
+    (sauce) => {
+      res.status(200).json(sauce);
     }
   ).catch(
     (error) => {

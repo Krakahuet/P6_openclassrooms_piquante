@@ -11,5 +11,6 @@ router.get('/:id', auth, sauceCtrl.getOneSauce);
 router.put('/:id', auth, sauceCtrl.modifySauce);
 router.delete('/:id', auth, sauceCtrl.deleteSauce);
 
+/* export de la constante routeur afin de pouvoir l'utiliser dans d'autres */
 module.exports = router;
 
