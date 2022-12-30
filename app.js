@@ -1,7 +1,5 @@
 /* import d'express  */
 const express = require('express');
-
-
 /* import de mongoose */
 const mongoose = require('mongoose');
 
@@ -9,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/users');
+const path = require('path');
 
 const app = express();
 /* connexion de mongoose à la base de données mongoDB */
@@ -37,6 +36,7 @@ app.use((req, res, next) => {
 /* Début générique des routes pour les sauces et l'authentification */
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/Images', express.static(path.join(__dirname, 'Images')));
 
 
 app.use(bodyParser.json());
