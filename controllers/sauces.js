@@ -17,8 +17,8 @@ exports.createSauce = (req, res, next) => {
     imageUrl: `${req.protocol}://${req.get('host')}/Images/${req.file.filename}`,
     likes: 0,
     dislikes: 0,
-    userslikes: [],
-    usersdislikes: [], 
+    usersLiked: [],
+    usersdisLiked: [], 
   });
   sauce.save().then(
     () => {
