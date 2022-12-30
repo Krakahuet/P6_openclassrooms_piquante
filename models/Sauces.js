@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 /* schéma de données qui contient les champs souhaités pour chaque sauce (méthode Schema de mongoose) */
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true },
+    name: { type: String, required: true },
     manufacturer: { type: String, required: true },
     description: { type: String, required: true },
     mainPepper: { type: String, required: true },
