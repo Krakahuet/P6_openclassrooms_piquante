@@ -163,7 +163,7 @@ exports.likeSauce = (req, res, next) => {
           sauce.updateOne(
             { _id: req.params.id, 
               $inc: {dislikes: -1},
-              $pull: {usersDisiked: req.body.userId},
+              $pull: {usersDisliked: req.body.userId},
             })
           .then(() => res.status(200).json({message : "Vous n'aimez plus cette sauce ?!"}))
           .catch( error => {
